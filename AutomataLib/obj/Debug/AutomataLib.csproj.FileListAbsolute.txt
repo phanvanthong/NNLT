@@ -1,0 +1,18 @@
+E:\VS 2008 Projects\Automata\AutomataLib\obj\Debug\ResolveAssemblyReference.cache
+E:\VS 2008 Projects\Automata\AutomataLib\bin\Debug\AutomataLib.dll.config
+E:\VS 2008 Projects\Automata\AutomataLib\bin\Debug\AutomataLib.dll
+E:\VS 2008 Projects\Automata\AutomataLib\bin\Debug\AutomataLib.pdb
+E:\VS 2008 Projects\Automata\AutomataLib\obj\Debug\AutomataLib.dll
+E:\VS 2008 Projects\Automata\AutomataLib\obj\Debug\AutomataLib.pdb
+D:\VS 2008 Projects\Automata\AutomataLib\bin\Debug\AutomataLib.dll.config
+D:\VS 2008 Projects\Automata\AutomataLib\bin\Debug\AutomataLib.dll
+D:\VS 2008 Projects\Automata\AutomataLib\bin\Debug\AutomataLib.pdb
+D:\VS 2008 Projects\Automata\AutomataLib\obj\Debug\ResolveAssemblyReference.cache
+D:\VS 2008 Projects\Automata\AutomataLib\obj\Debug\AutomataLib.dll
+D:\VS 2008 Projects\Automata\AutomataLib\obj\Debug\AutomataLib.pdb
+D:\CSharp2012\Automata_Updated\Automata\AutomataLib\bin\Debug\AutomataLib.dll.config
+D:\CSharp2012\Automata_Updated\Automata\AutomataLib\bin\Debug\AutomataLib.dll
+D:\CSharp2012\Automata_Updated\Automata\AutomataLib\bin\Debug\AutomataLib.pdb
+D:\CSharp2012\Automata_Updated\Automata\AutomataLib\obj\Debug\AutomataLib.csprojResolveAssemblyReference.cache
+D:\CSharp2012\Automata_Updated\Automata\AutomataLib\obj\Debug\AutomataLib.dll
+D:\CSharp2012\Automata_Updated\Automata\AutomataLib\obj\Debug\AutomataLib.pdb

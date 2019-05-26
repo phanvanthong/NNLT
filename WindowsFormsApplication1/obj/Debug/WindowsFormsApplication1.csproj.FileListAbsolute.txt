@@ -1,0 +1,16 @@
+E:\VS 2008 Projects\Automata\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+E:\VS 2008 Projects\Automata\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+E:\VS 2008 Projects\Automata\WindowsFormsApplication1\obj\Debug\ResolveAssemblyReference.cache
+E:\VS 2008 Projects\Automata\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+E:\VS 2008 Projects\Automata\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+E:\VS 2008 Projects\Automata\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+E:\VS 2008 Projects\Automata\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe.licenses
+E:\VS 2008 Projects\Automata\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+E:\VS 2008 Projects\Automata\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+D:\VS 2008 Projects\Automata\WindowsFormsApplication1\obj\Debug\ResolveAssemblyReference.cache
+D:\VS 2008 Projects\Automata\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+D:\VS 2008 Projects\Automata\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+D:\VS 2008 Projects\Automata\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+D:\VS 2008 Projects\Automata\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe.licenses
+D:\VS 2008 Projects\Automata\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+D:\VS 2008 Projects\Automata\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
