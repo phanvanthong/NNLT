@@ -16,3 +16,10 @@ D:\CSharp2012\Automata_Updated\Automata\AutomataLib\bin\Debug\AutomataLib.pdb
 D:\CSharp2012\Automata_Updated\Automata\AutomataLib\obj\Debug\AutomataLib.csprojResolveAssemblyReference.cache
 D:\CSharp2012\Automata_Updated\Automata\AutomataLib\obj\Debug\AutomataLib.dll
 D:\CSharp2012\Automata_Updated\Automata\AutomataLib\obj\Debug\AutomataLib.pdb
+C:\Users\Dell\Desktop\PVThong-Automata_sang_VanPham\PVThong-Automata_sang_VanPham\AutomataLib\bin\Debug\AutomataLib.dll.config
+C:\Users\Dell\Desktop\PVThong-Automata_sang_VanPham\PVThong-Automata_sang_VanPham\AutomataLib\bin\Debug\AutomataLib.dll
+C:\Users\Dell\Desktop\PVThong-Automata_sang_VanPham\PVThong-Automata_sang_VanPham\AutomataLib\bin\Debug\AutomataLib.pdb
+C:\Users\Dell\Desktop\PVThong-Automata_sang_VanPham\PVThong-Automata_sang_VanPham\AutomataLib\obj\Debug\AutomataLib.csprojAssemblyReference.cache
+C:\Users\Dell\Desktop\PVThong-Automata_sang_VanPham\PVThong-Automata_sang_VanPham\AutomataLib\obj\Debug\AutomataLib.csproj.CoreCompileInputs.cache
+C:\Users\Dell\Desktop\PVThong-Automata_sang_VanPham\PVThong-Automata_sang_VanPham\AutomataLib\obj\Debug\AutomataLib.dll
+C:\Users\Dell\Desktop\PVThong-Automata_sang_VanPham\PVThong-Automata_sang_VanPham\AutomataLib\obj\Debug\AutomataLib.pdb

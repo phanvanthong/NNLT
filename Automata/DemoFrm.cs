@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,20 +14,27 @@ namespace Automata
         BindingSource vanphambinding = new BindingSource();
         private string[] _characters;
         private State[] _State_arr;
-        string[,] trangthai = new string[100,100];
+        string[,] trangthai = new string[100, 100];
         string chuoi = "";
+        //string vanphamdau = "";
+        //string vanphamsau = "";
         string vanpham = "";
+        string batdau = "q0";
+        //string ktraFinal = "";
+        int ktraStartF = 0;
         Selectable _selectable;
+        bool finalstate = true;
+
         public DemoFrm()
         {
             InitializeComponent();
             automataView.DemoFinished += automataView_DemoFinished;
-            
+
         }
 
         void automataView_DemoFinished(object sender, DemoFinishedEvent ea)
         {
-            string title = "Mô phỏng kết thúc";          
+            string title = "Mô phỏng kết thúc";
             if (InvokeRequired)
             {
                 Invoke(new AutomataView.DemoFinishedHandler(automataView_DemoFinished),
@@ -34,7 +42,7 @@ namespace Automata
                 return;
             }
             if (ea.LanguageIsAccepted)
-                MessageBox.Show("Ngôn ngữ được chấp nhận bởi automat", title, 
+                MessageBox.Show("Ngôn ngữ được chấp nhận bởi automat", title,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             else
@@ -45,6 +53,9 @@ namespace Automata
 
         private void btnCreateTable_Click(object sender, EventArgs e)
         {
+            gridAutomata.Rows.Clear();
+            gridAutomata.Columns.Clear();
+            _State_arr = null;
             _characters = tbxChar.Text.Split(new char[] { ',' });
             gridAutomata.Columns.Add(string.Empty, string.Empty);
             for (int i = 0; i < _characters.Length; i++)
@@ -80,14 +91,13 @@ namespace Automata
 
         private void btnCreateAutomata_Click(object sender, EventArgs e)
         {
-            
-            trangthai = new string[(int)nmrStateCount.Value,(int)_characters.Length];
+            trangthai = new string[(int)nmrStateCount.Value, (int)_characters.Length];
             for (int i = 0; i < nmrStateCount.Value; i++)
             {
                 for (int j = 0; j < _characters.Length; j++)
                 {
                     String gridValue = gridAutomata.Rows[i + 1].Cells[j + 1].Value as String;
-                    trangthai[i,j] = gridValue;
+                    trangthai[i, j] = gridValue;
                     String transitChar = gridAutomata.Rows[0].Cells[j + 1].Value as String;
                     if (gridValue != null && gridValue != String.Empty)
                     {
@@ -100,7 +110,6 @@ namespace Automata
                     }
                 }
             }
-
             automataView.BuildAutomata();
             automataView.Refresh();
         }
@@ -110,21 +119,34 @@ namespace Automata
             int selItemIndex = selectableContextMenu.Items.IndexOf(e.ClickedItem);
             switch (selItemIndex)
             {
-                case 0:
-                    automataView.LeaveCurveDrawingMode();              
-                    break;
+                //case 0:
+                //    automataView.LeaveCurveDrawingMode();              
+                //    break;
+                //case 1:
+                //case 3:
+                //    automataView.EnterCurveDrawingMode();
+                //    automataView.Invalidate();
+                //    break;
                 case 1:
-                case 3:
-                    automataView.EnterCurveDrawingMode();
+                    if (_selectable != null && _selectable is State)   // Chọn trạng thái kết thúc
+                    {
+                        if (automataView.IsFinalState((State)_selectable) == true) finalstate = false;
+                        else finalstate = true;
+                        automataView.SetFinalState((State)_selectable, finalstate);
+                    }
                     automataView.Invalidate();
                     break;
-                case 4:
-                    if (_selectable != null && _selectable is State)
-                        automataView.SetFinalState((State)_selectable);
+                case 2:
+                    if (_selectable != null && _selectable is State) //chọn trạng thái bắt đầu
+                    {
+                        State s = _selectable as State;
+                        batdau = s.Label;
+                        automataView.SetBeginState((State)_selectable);
+                    }
                     automataView.Invalidate();
                     break;
             }
-            
+
         }
 
         private void DemoFrm_Load(object sender, EventArgs e)
@@ -144,24 +166,24 @@ namespace Automata
             {
                 if (_selectable is StateConnector)
                 {
-                    itemAdjustCurve.Enabled = itemCurve.Checked = _selectable is CurvedStateConnector;
-                    itemStraightLine.Checked = !itemCurve.Checked;
-                    itemFinalState.Enabled = false;
-                    selectableContextMenu.Show(automataView, e.Location);
+                    //itemAdjustCurve.Enabled = itemCurve.Checked = _selectable is CurvedStateConnector;
+                    //itemStraightLine.Checked = !itemCurve.Checked;
+                    //itemFinalState.Enabled = false;
+                    //selectableContextMenu.Show(automataView, e.Location);
 
                 }
                 else if (_selectable is State)
                 {
                     var state = _selectable as State;
-                    itemStraightLine.Checked = itemCurve.Checked = false;
-                    itemAdjustCurve.Enabled = itemCurve.Enabled =
-                        itemStraightLine.Enabled = false;
+                    //itemStraightLine.Checked = itemCurve.Checked = false;
+                    //itemAdjustCurve.Enabled = itemCurve.Enabled =
+                    //    itemStraightLine.Enabled = false;
                     itemFinalState.Enabled = true;
                     itemFinalState.Checked = automataView.IsFinalState(state);
                     selectableContextMenu.Show(automataView, e.Location);
                 }
             }
-            
+
 
 
         }
@@ -182,96 +204,114 @@ namespace Automata
 
         private void button1_Click(object sender, EventArgs e)
         {
-            automataView.StartDemo(tbxInput.Text);
-        }
-
-        private void Chuyen(int a)
-        {
-
+            //automataView.StartDemo(tbxInput.Text);
         }
 
         private void btnChuyenVanPham_Click(object sender, EventArgs e)
         {
-            //chuoi = tbxInput.Text;
+            ktraStartF = 0;
             vanpham = "";
             string nhan = "";
-            //int row=0, column=0;
-            string dau = "q0",cuoi="";
-            string [] Chuoicuoi ;
+            //int row=0, column=0;           
+            string dau = "q0", cuoi = "";
+            //string [] Chuoicuoi ;
             string vao = "q0", ra = "";
-            string Madau =""  ;
-            string Macuoi="" ;
-            for (int i = 0; i <nmrStateCount.Value ; i++)
+            string Madau = "";
+            string Macuoi = "";
+            char chuyen = 'A';
+            for (int i = Convert.ToInt32((batdau[batdau.Length - 1]).ToString()); i < nmrStateCount.Value; i++)
             {
-                for (int k = 0; k < _characters.Length; k++)
+                dau = "q" + i;
+                foreach (DictionaryEntry item in _State_arr[i].Transitions)
                 {
-                    nhan = _characters[k];
-                    dau = "q" + i;
-                    Chuoicuoi = trangthai[i,k].Split(new char[] { ',' });
-                    for (int m=0;m<Chuoicuoi.Length;m++)
+                    for (int j = 0; j < _characters.Length; j++)
                     {
-                        //State s = cuoi;
-                        cuoi = Chuoicuoi[m];
-                        char chuyen = 'A';
-                        for (int j = cuoi.Length - 1; j > 0; j--)
+                        nhan = _characters[j];
+                        if (item.Key.ToString() == _characters[j])
                         {
-                            Macuoi = cuoi[j].ToString();
-                            break;
+                            var list = item.Value as List<State>;
+                            foreach (var item2 in list)
+                            {
+                                cuoi = item2.Label;
+                                Macuoi = cuoi[cuoi.Length - 1].ToString();
+                                Madau = dau[dau.Length - 1].ToString();
+                                if (dau == batdau) vao = "S";
+                                else vao = ((char)(chuyen + Convert.ToInt32(Madau))).ToString();
+                                if (cuoi == batdau) ra = "S";
+                                else ra = ((char)(chuyen + Convert.ToInt32(Macuoi))).ToString();
+                                if (automataView.IsFinalState(item2))
+                                {
+                                    if (batdau == item2.Label) ktraStartF = 1;
+                                    vanpham += "\t" + vao + "   " + "-->" + "   " + nhan + ra + " | " + nhan + "\n";
+                                }
+                                else
+                                    vanpham += "\t" + vao + "   " + "-->" + "   " + nhan + ra + "\n";
+                            }
                         }
-                        for (int j = dau.Length - 1; j > 0; j--)
-                        {
-                            Madau = dau[j].ToString();
-                            break;
-                        }
-                        if (dau == "q0") vao = "S";
-                        else vao = ((char)(chuyen + Convert.ToInt32(Madau) - 1)).ToString();
-                        if (cuoi == "q0") ra = "S";
-                        else ra = ((char)(chuyen + Convert.ToInt32(Macuoi) - 1)).ToString();
-                        //string ttcuoi = automataView.IsFinalState(State s);
-                        vanpham += "\t" + vao + "   " + "-->" + "   " + nhan + ra + "\n";
                     }
-                    //dau = cuoi;
                 }
-                rtxbVanPham.Clear();
-                rtxbVanPham.Text = vanpham;
             }
-            //    for (int i=0; i<chuoi.Length;i++)
-            //    {
-            //        a = chuoi[i].ToString();
-            //        //if (Convert.ToInt32(a) == 0) a = "1";
-            //        //else a = "0";
-            //        for (int j = vaora.Length-1;j>0;j--)
-            //        {
-            //            b = vaora[j].ToString();
-            //            break;
-            //        }
-            //        for (int k = 0; k < _characters.Length; k++)
-            //        {
-            //            if (_characters[k] == a)
-            //            {
-            //                a = k.ToString();
-            //                break;
-            //            }
-            //        }
-            //        row = Convert.ToInt32(b);
-            //        column = Convert.ToInt32(a);
-            //        ketiep = trangthai[row, column];
+            for (int i = 0; i < Convert.ToInt32((batdau[batdau.Length - 1]).ToString()); i++)
+            {
+                dau = "q" + i;
+                //vanphamsau = "";
+                //ktraFinal = "";
+                foreach (DictionaryEntry item in _State_arr[i].Transitions)
+                {
+                    for (int j = 0; j < _characters.Length; j++)
+                    {
+                        nhan = _characters[j];
+                        if (item.Key.ToString() == _characters[j])
+                        {
+                            var list = item.Value as List<State>;
+                            foreach (var item2 in list)
+                            {
+                                cuoi = item2.Label;
+                                Macuoi = cuoi[cuoi.Length - 1].ToString();
+                                Madau = dau[dau.Length - 1].ToString();
+                                if (dau == batdau) vao = "S";
+                                else vao = ((char)(chuyen + Convert.ToInt32(Madau))).ToString();
+                                if (cuoi == batdau) ra = "S";
+                                else ra = ((char)(chuyen + Convert.ToInt32(Macuoi))).ToString();
+                                //if (automataView.IsFinalState(item2))
+                                //{
+                                //    ktraFinal += nhan;
+                                //}
+                                //vanphamdau = "  " + vao + "   " + "-->" + "   ";
+                                //if (vanphamsau == "") vanphamsau += nhan + ra;
+                                //else vanphamsau += " | " + nhan + ra;
+                                if (automataView.IsFinalState(item2))
+                                {
+                                    if (batdau == item2.Label) ktraStartF = 1;
+                                    vanpham += "\t" + vao + "   " + "-->" + "   " + nhan + ra + " | " + nhan + "\n";
+                                }
+                                else
+                                    vanpham += "\t" + vao + "   " + "-->" + "   " + nhan + ra + "\n";
+                            }
+                        }
+                    }
+                }
+                //vanpham += vanphamdau + vanphamsau;
+                //if (ktraFinal != "")
+                //{
+                //    for (int final = 0; final < ktraFinal.Length; final++)
+                //    {
+                //        vanpham += " | " + ktraFinal[final];
+                //    }
+                //}
+                //vanpham += "\n";
+            }
+            if (ktraStartF == 1)
+            {
+                vanpham += "\tS   -->   ε";
+            }
 
-            //        char chuyen = 'A';
-            //        for (int j = ketiep.Length - 1; j > 0; j--)
-            //        {
-            //            cuoi = ketiep[j].ToString();
-            //            break;
-            //        }
-            //        if(vaora=="q0") dau = "S";
-            //        else  dau = ((char)(chuyen + Convert.ToInt32(b)-1)).ToString();
-            //        if (ketiep == "q0") cuoi = "S";
-            //        else cuoi = ((char)(chuyen + Convert.ToInt32(cuoi)-1)).ToString();
-            //        vanpham += "\t" +dau + "   " + "-->" + "   " + _characters[Convert.ToInt32(a)]  + cuoi +"\n";
-            //        vaora = ketiep;
-            //    }
-            //    rtxbVanPham.Clear();
-            //    rtxbVanPham.Text = vanpham;
+            rtxbVanPham.Clear();
+            rtxbVanPham.Text = vanpham;
+
         }
+
+
+
     }
 }

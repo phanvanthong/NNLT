@@ -275,6 +275,24 @@ namespace AutomataLib
                 _finalStates.Remove(s);
             }
         }
+
+        public void SetBeginState(State s)
+        {
+            _beginState = s;
+
+        }
+
+        public bool IsBeginState(State s)
+        {
+            if (_beginState == s) return true;
+            else return false;
+        }
+
+        //public void clear()
+        //{
+            
+        //}
+
         public List<State> States
         {
             get
@@ -289,7 +307,8 @@ namespace AutomataLib
             _angleStep = 2 * Math.PI / _drawnStateList.Count;
             int halfWidth = DisplayRectangle.Width / 2;
             Point ptCenter = new Point(halfWidth, DisplayRectangle.Height / 2);
-            int r = halfWidth * 2 / 3;
+            //int r = halfWidth * 2 / 3;
+            int r = -200;
             double a = 0;
             List<Selectable> selectableList = new List<Selectable>();
 
@@ -301,7 +320,7 @@ namespace AutomataLib
                 state.X = (int)(r * Math.Cos(a)) + ptCenter.X;
                 state.Y = (int)(r * Math.Sin(a)) + ptCenter.Y;
                 selectableList.Add(state);
-                foreach (DictionaryEntry de in state.Transitions)
+                foreach (DictionaryEntry de in state.Transitions)   //tạo đường nối
                 {
                     var deValue = de.Value as List<State>;
                     foreach (var destinedState in deValue)
@@ -334,7 +353,15 @@ namespace AutomataLib
                                 //thì ta sẽ tạo đường cong
                                 CurvedStateConnector newCurvedConnector = new CurvedStateConnector
                                                                 (state, destinedState);
-                                var p = new Point(state.Position.X, state.Position.Y - 100);
+                                var p=new Point();
+                                if (state.Y < 305)
+                                {
+                                    p = new Point(state.Position.X, state.Position.Y - 100);
+                                }
+                                else
+                                {
+                                    p = new Point(state.Position.X, state.Position.Y + 100);
+                                }
                                 var controlPoints = newCurvedConnector.ControlPoints;
                                 controlPoints[0].X = p.X - 30;
                                 controlPoints[0].Y = controlPoints[1].Y = p.Y;
@@ -612,14 +639,42 @@ namespace AutomataLib
                         state.BoundingRect, strFormat);
                     Pen stateBorderPen = state.IsSelected ? redPen : borderPen;
                     _automatGraphics.DrawEllipse(stateBorderPen, state.BoundingRect);
-                    if(IsFinalState(state))
+                    
+                    
+                    if (IsFinalState(state))
                     {
-                        Pen markPen = new Pen(Color.Maroon, 2);
+                        Pen markPen = new Pen(Color.Maroon, 4);
                         var newRect = state.BoundingRect;
                         newRect.Inflate(3, 3);
                         _automatGraphics.DrawEllipse(markPen, newRect);
                         markPen.Dispose();
                     }
+                    if (_beginState == state)
+                    {
+                        Pen pen_draw = new Pen(Color.Black);
+                        Point[] pnt = new Point[3];
+
+                        if (state.X < 305)
+                        {
+                            pnt[0].X = state.X - 60;
+                            pnt[0].Y = state.Y - 15;
+                            pnt[1].X = state.X - 60;
+                            pnt[1].Y = state.Y + 15;
+                            pnt[2].X = state.X - 30;
+                            pnt[2].Y = state.Y;
+                        }
+                        else if (state.X > 305)
+                        {
+                            pnt[0].X = state.X + 60;
+                            pnt[0].Y = state.Y - 15;
+                            pnt[1].X = state.X + 60;
+                            pnt[1].Y = state.Y + 15;
+                            pnt[2].X = state.X + 30;
+                            pnt[2].Y = state.Y;
+                        }
+                        _automatGraphics.DrawPolygon(pen_draw, pnt);
+                    }
+                    
                     grd.Dispose();
                     gp.Dispose();
                 }
@@ -632,13 +687,13 @@ namespace AutomataLib
                     OnPaintHandle(_curveControlPoints[1]);
             }
             OnAnimatePaint(_automatGraphics);
-            pe.Graphics.DrawImage(_automatBitmap, DisplayRectangle, DisplayRectangle, 
+            pe.Graphics.DrawImage(_automatBitmap, DisplayRectangle, DisplayRectangle,
                 GraphicsUnit.Pixel);
             stateFont.Dispose();
             strFormat.Dispose();
             borderPen.Dispose();
             redPen.Dispose();
-            connectorPen.Dispose();         
+            connectorPen.Dispose();
             arrowBrush.Dispose();
         }
 

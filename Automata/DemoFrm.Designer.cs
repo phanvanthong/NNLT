@@ -30,9 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.rtxbVanPham = new System.Windows.Forms.RichTextBox();
             this.btnChuyenVanPham = new System.Windows.Forms.Button();
-            this.tbxInput = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnCreateAutomata = new System.Windows.Forms.Button();
             this.nmrStateCount = new System.Windows.Forms.NumericUpDown();
             this.btnCreateTable = new System.Windows.Forms.Button();
@@ -40,25 +39,24 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tbxChar = new System.Windows.Forms.TextBox();
-            this.automataView = new AutomataLib.AutomataView();
             this.selectableContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.itemStraightLine = new System.Windows.Forms.ToolStripMenuItem();
-            this.itemCurve = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.itemAdjustCurve = new System.Windows.Forms.ToolStripMenuItem();
             this.itemFinalState = new System.Windows.Forms.ToolStripMenuItem();
+            this.trạngTháiBắtĐầuToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.gridContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.stateMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rtxbVanPham = new System.Windows.Forms.RichTextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.trạngTháiBắtĐầuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemAdjustCurve = new System.Windows.Forms.ToolStripMenuItem();
+            this.automataView = new AutomataLib.AutomataView();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmrStateCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridAutomata)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.automataView)).BeginInit();
             this.selectableContextMenu.SuspendLayout();
             this.gridContextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.automataView)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -74,8 +72,6 @@
             // 
             this.splitContainer1.Panel1.Controls.Add(this.rtxbVanPham);
             this.splitContainer1.Panel1.Controls.Add(this.btnChuyenVanPham);
-            this.splitContainer1.Panel1.Controls.Add(this.tbxInput);
-            this.splitContainer1.Panel1.Controls.Add(this.button1);
             this.splitContainer1.Panel1.Controls.Add(this.btnCreateAutomata);
             this.splitContainer1.Panel1.Controls.Add(this.nmrStateCount);
             this.splitContainer1.Panel1.Controls.Add(this.btnCreateTable);
@@ -87,40 +83,31 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.automataView);
-            this.splitContainer1.Size = new System.Drawing.Size(1226, 693);
+            this.splitContainer1.Size = new System.Drawing.Size(1226, 737);
             this.splitContainer1.SplitterDistance = 306;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 8;
             // 
+            // rtxbVanPham
+            // 
+            this.rtxbVanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtxbVanPham.Location = new System.Drawing.Point(19, 375);
+            this.rtxbVanPham.Name = "rtxbVanPham";
+            this.rtxbVanPham.ReadOnly = true;
+            this.rtxbVanPham.Size = new System.Drawing.Size(374, 350);
+            this.rtxbVanPham.TabIndex = 10;
+            this.rtxbVanPham.Text = "";
+            // 
             // btnChuyenVanPham
             // 
-            this.btnChuyenVanPham.Location = new System.Drawing.Point(16, 386);
+            this.btnChuyenVanPham.Location = new System.Drawing.Point(16, 336);
             this.btnChuyenVanPham.Margin = new System.Windows.Forms.Padding(4);
             this.btnChuyenVanPham.Name = "btnChuyenVanPham";
             this.btnChuyenVanPham.Size = new System.Drawing.Size(171, 32);
-            this.btnChuyenVanPham.TabIndex = 17;
+            this.btnChuyenVanPham.TabIndex = 4;
             this.btnChuyenVanPham.Text = "Chuyển sang văn phạm";
             this.btnChuyenVanPham.UseVisualStyleBackColor = true;
             this.btnChuyenVanPham.Click += new System.EventHandler(this.btnChuyenVanPham_Click);
-            // 
-            // tbxInput
-            // 
-            this.tbxInput.Location = new System.Drawing.Point(16, 343);
-            this.tbxInput.Margin = new System.Windows.Forms.Padding(4);
-            this.tbxInput.Name = "tbxInput";
-            this.tbxInput.Size = new System.Drawing.Size(193, 22);
-            this.tbxInput.TabIndex = 16;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(248, 340);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 28);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Demo";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnCreateAutomata
             // 
@@ -128,7 +115,7 @@
             this.btnCreateAutomata.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreateAutomata.Name = "btnCreateAutomata";
             this.btnCreateAutomata.Size = new System.Drawing.Size(128, 32);
-            this.btnCreateAutomata.TabIndex = 14;
+            this.btnCreateAutomata.TabIndex = 3;
             this.btnCreateAutomata.Text = "Tạo Automat";
             this.btnCreateAutomata.UseVisualStyleBackColor = true;
             this.btnCreateAutomata.Click += new System.EventHandler(this.btnCreateAutomata_Click);
@@ -152,7 +139,7 @@
             this.btnCreateTable.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreateTable.Name = "btnCreateTable";
             this.btnCreateTable.Size = new System.Drawing.Size(171, 32);
-            this.btnCreateTable.TabIndex = 12;
+            this.btnCreateTable.TabIndex = 2;
             this.btnCreateTable.Text = "Tạo bảng trạng thái";
             this.btnCreateTable.UseVisualStyleBackColor = true;
             this.btnCreateTable.Click += new System.EventHandler(this.btnCreateTable_Click);
@@ -198,66 +185,35 @@
             this.tbxChar.Margin = new System.Windows.Forms.Padding(4);
             this.tbxChar.Name = "tbxChar";
             this.tbxChar.Size = new System.Drawing.Size(204, 22);
-            this.tbxChar.TabIndex = 8;
-            // 
-            // automataView
-            // 
-            this.automataView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.automataView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.automataView.ErrorImage = null;
-            this.automataView.Location = new System.Drawing.Point(0, 0);
-            this.automataView.Margin = new System.Windows.Forms.Padding(4);
-            this.automataView.Name = "automataView";
-            this.automataView.Size = new System.Drawing.Size(915, 693);
-            this.automataView.TabIndex = 0;
-            this.automataView.TabStop = false;
-            this.automataView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.automataView_MouseClick);
+            this.tbxChar.TabIndex = 1;
             // 
             // selectableContextMenu
             // 
             this.selectableContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.selectableContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.itemStraightLine,
-            this.itemCurve,
             this.toolStripSeparator1,
-            this.itemAdjustCurve,
-            this.itemFinalState});
+            this.itemFinalState,
+            this.trạngTháiBắtĐầuToolStripMenuItem1});
             this.selectableContextMenu.Name = "connectorContextMenu";
-            this.selectableContextMenu.Size = new System.Drawing.Size(201, 114);
+            this.selectableContextMenu.Size = new System.Drawing.Size(201, 58);
             this.selectableContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.connectorContextMenu_ItemClicked);
-            // 
-            // itemStraightLine
-            // 
-            this.itemStraightLine.Checked = true;
-            this.itemStraightLine.CheckOnClick = true;
-            this.itemStraightLine.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.itemStraightLine.Name = "itemStraightLine";
-            this.itemStraightLine.Size = new System.Drawing.Size(200, 26);
-            this.itemStraightLine.Text = "Vẽ thẳng";
-            // 
-            // itemCurve
-            // 
-            this.itemCurve.CheckOnClick = true;
-            this.itemCurve.Name = "itemCurve";
-            this.itemCurve.Size = new System.Drawing.Size(200, 26);
-            this.itemCurve.Text = "Vẽ cong";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(197, 6);
             // 
-            // itemAdjustCurve
-            // 
-            this.itemAdjustCurve.Name = "itemAdjustCurve";
-            this.itemAdjustCurve.Size = new System.Drawing.Size(200, 26);
-            this.itemAdjustCurve.Text = "Chỉnh đường cong";
-            // 
             // itemFinalState
             // 
             this.itemFinalState.Name = "itemFinalState";
-            this.itemFinalState.Size = new System.Drawing.Size(200, 26);
+            this.itemFinalState.Size = new System.Drawing.Size(200, 24);
             this.itemFinalState.Text = "Trạng thái kết thúc";
+            // 
+            // trạngTháiBắtĐầuToolStripMenuItem1
+            // 
+            this.trạngTháiBắtĐầuToolStripMenuItem1.Name = "trạngTháiBắtĐầuToolStripMenuItem1";
+            this.trạngTháiBắtĐầuToolStripMenuItem1.Size = new System.Drawing.Size(200, 24);
+            this.trạngTháiBắtĐầuToolStripMenuItem1.Text = "Trạng thái bắt đầu";
             // 
             // gridContextMenu
             // 
@@ -273,29 +229,46 @@
             this.stateMenuItem.Size = new System.Drawing.Size(200, 24);
             this.stateMenuItem.Text = "Trạng thái kết thúc";
             // 
-            // rtxbVanPham
-            // 
-            this.rtxbVanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtxbVanPham.Location = new System.Drawing.Point(19, 425);
-            this.rtxbVanPham.Name = "rtxbVanPham";
-            this.rtxbVanPham.Size = new System.Drawing.Size(329, 265);
-            this.rtxbVanPham.TabIndex = 1;
-            this.rtxbVanPham.Text = "";
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // trạngTháiBắtĐầuToolStripMenuItem
+            // 
+            this.trạngTháiBắtĐầuToolStripMenuItem.Name = "trạngTháiBắtĐầuToolStripMenuItem";
+            this.trạngTháiBắtĐầuToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            this.trạngTháiBắtĐầuToolStripMenuItem.Text = "Trạng thái bắt đầu";
+            // 
+            // itemAdjustCurve
+            // 
+            this.itemAdjustCurve.Name = "itemAdjustCurve";
+            this.itemAdjustCurve.Size = new System.Drawing.Size(210, 24);
+            this.itemAdjustCurve.Text = "Chỉnh đường cong";
+            // 
+            // automataView
+            // 
+            this.automataView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.automataView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.automataView.ErrorImage = null;
+            this.automataView.Location = new System.Drawing.Point(0, 0);
+            this.automataView.Margin = new System.Windows.Forms.Padding(4);
+            this.automataView.Name = "automataView";
+            this.automataView.Size = new System.Drawing.Size(915, 737);
+            this.automataView.TabIndex = 0;
+            this.automataView.TabStop = false;
+            this.automataView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.automataView_MouseClick);
+            // 
             // DemoFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1226, 693);
+            this.ClientSize = new System.Drawing.Size(1226, 737);
             this.Controls.Add(this.splitContainer1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DemoFrm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DemoFrm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DemoFrm_FormClosed);
             this.Load += new System.EventHandler(this.DemoFrm_Load);
@@ -306,9 +279,9 @@
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nmrStateCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridAutomata)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.automataView)).EndInit();
             this.selectableContextMenu.ResumeLayout(false);
             this.gridContextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.automataView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -324,18 +297,16 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbxChar;
         private AutomataLib.AutomataView automataView;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ContextMenuStrip selectableContextMenu;
-        private System.Windows.Forms.ToolStripMenuItem itemStraightLine;
-        private System.Windows.Forms.ToolStripMenuItem itemCurve;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem itemAdjustCurve;
         private System.Windows.Forms.ContextMenuStrip gridContextMenu;
         private System.Windows.Forms.ToolStripMenuItem stateMenuItem;
         private System.Windows.Forms.ToolStripMenuItem itemFinalState;
-        private System.Windows.Forms.TextBox tbxInput;
         private System.Windows.Forms.Button btnChuyenVanPham;
         private System.Windows.Forms.RichTextBox rtxbVanPham;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem trạngTháiBắtĐầuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem trạngTháiBắtĐầuToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem itemAdjustCurve;
     }
 }
