@@ -39,6 +39,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tbxChar = new System.Windows.Forms.TextBox();
+            this.automataView = new AutomataLib.AutomataView();
             this.selectableContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.itemFinalState = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,15 +49,14 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.trạngTháiBắtĐầuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemAdjustCurve = new System.Windows.Forms.ToolStripMenuItem();
-            this.automataView = new AutomataLib.AutomataView();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmrStateCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridAutomata)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.automataView)).BeginInit();
             this.selectableContextMenu.SuspendLayout();
             this.gridContextMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.automataView)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -187,6 +187,19 @@
             this.tbxChar.Size = new System.Drawing.Size(204, 22);
             this.tbxChar.TabIndex = 1;
             // 
+            // automataView
+            // 
+            this.automataView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.automataView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.automataView.ErrorImage = null;
+            this.automataView.Location = new System.Drawing.Point(0, 0);
+            this.automataView.Margin = new System.Windows.Forms.Padding(4);
+            this.automataView.Name = "automataView";
+            this.automataView.Size = new System.Drawing.Size(915, 737);
+            this.automataView.TabIndex = 0;
+            this.automataView.TabStop = false;
+            this.automataView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.automataView_MouseClick);
+            // 
             // selectableContextMenu
             // 
             this.selectableContextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -247,19 +260,6 @@
             this.itemAdjustCurve.Size = new System.Drawing.Size(210, 24);
             this.itemAdjustCurve.Text = "Chỉnh đường cong";
             // 
-            // automataView
-            // 
-            this.automataView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.automataView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.automataView.ErrorImage = null;
-            this.automataView.Location = new System.Drawing.Point(0, 0);
-            this.automataView.Margin = new System.Windows.Forms.Padding(4);
-            this.automataView.Name = "automataView";
-            this.automataView.Size = new System.Drawing.Size(915, 737);
-            this.automataView.TabIndex = 0;
-            this.automataView.TabStop = false;
-            this.automataView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.automataView_MouseClick);
-            // 
             // DemoFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -279,9 +279,9 @@
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nmrStateCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridAutomata)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.automataView)).EndInit();
             this.selectableContextMenu.ResumeLayout(false);
             this.gridContextMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.automataView)).EndInit();
             this.ResumeLayout(false);
 
         }

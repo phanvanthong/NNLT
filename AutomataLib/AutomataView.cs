@@ -288,10 +288,10 @@ namespace AutomataLib
             else return false;
         }
 
-        //public void clear()
-        //{
-            
-        //}
+        public void clear_ListState()
+        {
+            _drawnStateList.Clear();
+        }
 
         public List<State> States
         {

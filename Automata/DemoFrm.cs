@@ -11,6 +11,8 @@ namespace Automata
 {
     public partial class DemoFrm : Form
     {
+        string ktrabatdau = "";
+        List<string> ktraketthuc = new List<string>();
         BindingSource vanphambinding = new BindingSource();
         private string[] _characters;
         private State[] _State_arr;
@@ -55,7 +57,10 @@ namespace Automata
         {
             gridAutomata.Rows.Clear();
             gridAutomata.Columns.Clear();
+           // automataView.clear_ListState();
+            
             _State_arr = null;
+            _characters = null;
             _characters = tbxChar.Text.Split(new char[] { ',' });
             gridAutomata.Columns.Add(string.Empty, string.Empty);
             for (int i = 0; i < _characters.Length; i++)
@@ -91,6 +96,34 @@ namespace Automata
 
         private void btnCreateAutomata_Click(object sender, EventArgs e)
         {
+            // automataView.clear_ListState();
+            // State.Clear_stateCollection();
+            //if (_State_arr[0].Transitions.Count != 0)
+            //{
+            ktrabatdau = null;
+            ktraketthuc = new List<string>(); ;
+                for (int i = 0; i < nmrStateCount.Value; i++)
+                {
+                    if(automataView.IsBeginState(_State_arr[i]))
+                    {
+                        ktrabatdau = _State_arr[i].Label;
+                    }
+                    if (automataView.IsFinalState(_State_arr[i]))
+                    {
+                        ktraketthuc.Add(_State_arr[i].Label);
+                    }
+                }
+                automataView.clear_ListState();
+                State.Clear_stateCollection();
+                _State_arr = new State[(int)nmrStateCount.Value];
+                for (int i = 0; i < nmrStateCount.Value; i++)
+                {
+                    string stateLabel = String.Format("q{0}", i);
+                    gridAutomata.Rows[i + 1].Cells[0].Value = stateLabel;
+                    _State_arr[i] = new State(stateLabel);
+                    automataView.States.Add(_State_arr[i]);
+                }
+            //}
             trangthai = new string[(int)nmrStateCount.Value, (int)_characters.Length];
             for (int i = 0; i < nmrStateCount.Value; i++)
             {
@@ -111,6 +144,26 @@ namespace Automata
                 }
             }
             automataView.BuildAutomata();
+            foreach(State s in _State_arr)
+            {
+                if (ktraketthuc!=null)
+                {
+                    foreach (var item in ktraketthuc)
+                    {
+                        if (item == s.Label.ToString())
+                        {
+                            automataView.SetFinalState(s);
+                        }
+                    }
+                }
+                if(s.Label== ktrabatdau)
+                {
+                    automataView.SetBeginState(s);
+                }
+            }
+
+            
+
             automataView.Refresh();
         }
 
@@ -241,11 +294,23 @@ namespace Automata
                                 else ra = ((char)(chuyen + Convert.ToInt32(Macuoi))).ToString();
                                 if (automataView.IsFinalState(item2))
                                 {
-                                    if (batdau == item2.Label) ktraStartF = 1;
                                     vanpham += "\t" + vao + "   " + "-->" + "   " + nhan + ra + " | " + nhan + "\n";
                                 }
                                 else
-                                    vanpham += "\t" + vao + "   " + "-->" + "   " + nhan + ra + "\n";
+                                {
+                                    if (item2.Transitions.Count != 0)
+                                    {
+                                        int ktraTransions = 0;
+                                        foreach (DictionaryEntry transion in item2.Transitions)
+                                        {
+                                            int a = Convert.ToInt32((item2.Label[item2.Label.Length - 1]).ToString());
+                                            int b = Convert.ToInt32(transion.Key.ToString());
+                                            if (trangthai[a,b] != item2.Label) ktraTransions = 1;
+                                        }
+                                        if (ktraTransions == 1) vanpham += "\t" + vao + "   " + "-->" + "   " + nhan + ra + "\n";
+                                    }
+
+                                }
                             }
                         }
                     }
@@ -282,11 +347,23 @@ namespace Automata
                                 //else vanphamsau += " | " + nhan + ra;
                                 if (automataView.IsFinalState(item2))
                                 {
-                                    if (batdau == item2.Label) ktraStartF = 1;
                                     vanpham += "\t" + vao + "   " + "-->" + "   " + nhan + ra + " | " + nhan + "\n";
                                 }
                                 else
-                                    vanpham += "\t" + vao + "   " + "-->" + "   " + nhan + ra + "\n";
+                                {
+                                    if(item2.Transitions.Count!=0)
+                                    {
+                                        int ktraTransions = 0;
+                                        foreach (DictionaryEntry transion in item2.Transitions)
+                                        {
+                                            int a = Convert.ToInt32((item2.Label[item2.Label.Length - 1]).ToString());
+                                            int b = Convert.ToInt32(transion.Key.ToString());
+                                            if (trangthai[a, b] != item2.Label) ktraTransions = 1;
+                                        }
+                                        if (ktraTransions==1) vanpham += "\t" + vao + "   " + "-->" + "   " + nhan + ra + "\n";
+                                    }
+                                        
+                                }
                             }
                         }
                     }
@@ -301,11 +378,41 @@ namespace Automata
                 //}
                 //vanpham += "\n";
             }
+            
+            foreach(State s in _State_arr)
+            {
+                if (automataView.IsFinalState(s) && batdau == s.Label) ktraStartF = 1;
+                if(automataView.IsBeginState(s))
+                {
+                    if (s.Transitions.Count == 0)
+                    {
+                        vanpham = "Văn phạm trống!";
+                        ktraStartF = 0;
+                        break;
+                    }
+                    int ktraTransions = 0;
+                    if (ktraTransions == 0)
+                    {
+                        foreach (DictionaryEntry transion in s.Transitions)
+                        {
+                            int a = Convert.ToInt32((s.Label[s.Label.Length - 1]).ToString());
+                            int b = Convert.ToInt32(transion.Key.ToString());
+                            if (trangthai[a, b] != s.Label) ktraTransions = 1;
+                        }
+                    }
+                    if(ktraTransions==0)
+                    {
+                        vanpham = "Văn phạm trống!";
+                        ktraStartF = 0;
+                        break;
+                    }
+                }
+                
+            }
             if (ktraStartF == 1)
             {
                 vanpham += "\tS   -->   ε";
             }
-
             rtxbVanPham.Clear();
             rtxbVanPham.Text = vanpham;
 

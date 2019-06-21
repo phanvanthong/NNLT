@@ -51,6 +51,12 @@ namespace AutomataLib
             }
             return null;
         }
+
+        public static void Clear_stateCollection()
+        {
+            stateCollection.Clear();
+        }
+
         public Hashtable Transitions
         {
             get
